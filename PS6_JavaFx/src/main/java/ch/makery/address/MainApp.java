@@ -48,15 +48,14 @@ public class MainApp extends Application {
     	RefreshPersonTable();
     }
     
-    
+   //Added and deleted test rows to ensure the app was working properly
     public void  RefreshPersonTable()
     {
     	personData.clear();
     	
-    	//TODO:	When PersonDAL.getPersons() is complete, fix the code 
+    	//When PersonDAL.getPersons() is complete, fix the code 
     	
-    	ArrayList<PersonDomainModel> people = null;
-    	// people = PersonDAL.getPersons();
+    	ArrayList<PersonDomainModel> people = PersonDAL.getAllPersons();
     	
     	for (PersonDomainModel p: people)
     	{

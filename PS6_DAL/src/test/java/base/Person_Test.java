@@ -55,10 +55,16 @@ public class Person_Test {
 	public static void TearDownAfterClass() throws Exception{
 		//Cleans up data written to the database
 		ArrayList<PersonDomainModel> persons;
-   	 	persons = PersonDAL.getPersons();
+   	 	persons = PersonDAL.getAllPersons();
    	 	for (PersonDomainModel p: persons){
    	 		PersonDAL.deletePerson(p.getPersonID());
    	 	}
+	}
+	
+	@Test
+	public void GetTest(){
+		PersonDAL.addPerson(person1);
+		assertEquals(person1UUID, (PersonDAL.getPerson(person1UUID)).getPersonID());
 	}
 	
 	@Test
@@ -66,6 +72,7 @@ public class Person_Test {
 		//Adds person1 and then checks the UUID to ensure the person was added
 		PersonDAL.addPerson(person1);
 		assertEquals(person1.getPersonID(), (PersonDAL.getPerson(person1UUID).getPersonID()));
+		//Also checks the getPerson method implicitly
 		}
 	
 	@Test
@@ -82,13 +89,14 @@ public class Person_Test {
 	public void RemoveTest(){
 		ArrayList<PersonDomainModel> persons;
 		PersonDAL.addPerson(person1);
-		persons = PersonDAL.getPersons();
+		persons = PersonDAL.getAllPersons();
 		//Adds person1, checks that only one person has been added
 		assertTrue(persons.size() == 1);
 		PersonDAL.deletePerson(person1.getPersonID());
-		persons = PersonDAL.getPersons();
+		persons = PersonDAL.getAllPersons();
 		//Removes person1, checks that the arraylist is now empty
 		assertTrue(persons.size() == 0);
+		//Also checks the getAllPersons method implicitly
 	}
 }
 

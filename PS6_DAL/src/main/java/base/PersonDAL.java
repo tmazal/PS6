@@ -35,7 +35,7 @@ public class PersonDAL {
 		return per;
 	}
 	
-	public static ArrayList<PersonDomainModel> getPersons() {
+	public static ArrayList<PersonDomainModel> getAllPersons() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		PersonDomainModel perGet = null;		
