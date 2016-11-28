@@ -17,7 +17,7 @@ import util.HibernateUtil;
 
 public class PersonDAL {
 
-	public static PersonDomainModel addStudent(PersonDomainModel per) {
+	public static PersonDomainModel addPerson(PersonDomainModel per) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		int employeeID = 0;
@@ -38,7 +38,7 @@ public class PersonDAL {
 	public static ArrayList<PersonDomainModel> getPersons() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
-		PersonDomainModel stuGet = null;		
+		PersonDomainModel perGet = null;		
 		ArrayList<PersonDomainModel> pers = new ArrayList<PersonDomainModel>();
 		
 		try {
@@ -70,7 +70,7 @@ public class PersonDAL {
 		try {
 			tx = session.beginTransaction();	
 									
-			Query query = session.createQuery("from StudentDomainModel where studentId = :id ");
+			Query query = session.createQuery("from PersonDomainModel where PersonId = :id ");
 			query.setParameter("id", perID.toString());
 			
 			List<?> list = query.list();
@@ -109,7 +109,7 @@ public class PersonDAL {
 		}
 	}	
 	
-	public static PersonDomainModel updateStudent(PersonDomainModel per) {
+	public static PersonDomainModel updatePerson(PersonDomainModel per) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		PersonDomainModel perGet = null;		
